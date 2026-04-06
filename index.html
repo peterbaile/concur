@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J696KH33YJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-J696KH33YJ');
+  </script>
+  
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <!-- <meta name="description" content="DESCRIPTION META TAG"> -->
+  <meta property="og:title" content="CONCUR: A Framework for Continual Constrained and Unconstrained Routing"/>
+  <!-- <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/> -->
+  <meta property="og:url" content="https://peterbaile.github.io/concur/"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/images/split.png" />
+  <!-- <meta property="og:image:width" content="1200"/> -->
+  <!-- <meta property="og:image:height" content="630"/> -->
+
+
+  <meta name="twitter:title" content="CONCUR: A Framework for Continual Constrained and Unconstrained Routing">
+  <!-- <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG"> -->
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/split.png">
+  <!-- <meta name="twitter:card" content="summary_large_image"> -->
+  <!-- Keywords for your paper to be indexed by-->
+  <!-- <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>CONCUR: A Framework for Continual Constrained and Unconstrained Routing</title>
+  <link rel="icon" type="image/x-icon" href="static/images/split.png">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">CONCUR: A Framework for Continual Constrained and Unconstrained Routing</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+                <span class="author-block">
+                  <a href="https://peterbaile.github.io/" target="_blank">Peter Baile Chen</a><sup>1</sup>,
+                </span>
+
+                <span class="author-block">
+                  <a href="https://weiyueli7.github.io/" target="_blank">Weiyue Li</a><sup>2</sup>,
+                </span>
+                  
+                <span class="author-block">
+                  <a href="https://www.cis.upenn.edu/~danroth/" target="_blank">Dan Roth</a><sup>3</sup>,
+                </span>
+
+                <span class="author-block">
+                  <a href="https://people.csail.mit.edu/michjc/" target="_blank">Michael Cafarella</a><sup>1</sup>,
+                </span>
+                
+                <span class="author-block">
+                  <a href="https://db.csail.mit.edu/madden/" target="_blank">Samuel Madden</a><sup>1</sup>,
+                </span>
+
+                <span class="author-block">
+                  <a href="https://www.mit.edu/~jda/" target="_blank">Jacob Andreas</a><sup>1</sup>
+                </span>
+            </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block"><sup>1</sup>MIT, <sup>2</sup>Harvard University, <sup>3</sup>Oracle AI and the University of Pennsylvania</span>
+                    <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+                      <span class="link-block">
+                        <a href="https://openreview.net/pdf?id=gCUY6QIv8r" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="ai ai-arxiv"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+                  <!-- Github link -->
+                  <span class="link-block">
+                    <a href="https://github.com/peterbaile/concur" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-widescreen">
+    <div class="column" style="padding:0.25rem;">
+    <h2 class="subtitle">
+      AI tasks differ in complexity and are best addressed with different computation strategies (e.g., combinations of models and decoding methods). Hence, an effective routing system that maps tasks to the appropriate strategies is crucial.
+      <br />
+      However, prior routing frameworks rely on a <i>single</i> model shared across <i>all</i> strategies and leverage a single input representation, which restricts both their generalizability to continual routing and the quality of their routing decisions. To overcome these limitations, we introduce <b><i>CONCUR</i></b>, a modular framework that incorporates multiple input representations to enable continual and more accurate routing.
+      <div class="has-text-centered" style="margin-top: 2rem;">
+        <img src="./static/images/overview.png" style="width: 80%;" />
+      </div>
+    </h2>
+  </div>
+</div>
+  <!-- </div> -->
+</section>
+
+<!-- Paper abstract -->
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <!-- <h2 class="title is-3">Summary</h2> -->
+        <div class="content has-text-justified">
+          
+          <p><b>CONCUR</b></p>
+
+          <div class="has-text-centered" style="margin: 2rem 0;">
+            <img src="./static/images/router.png" />
+          </div>
+
+          <ul>
+            <li>CONCUR (1) adopts a modular design, training a separate predictor for each strategy so that extending to new strategies only requires training additional predictors without touching existing models; and (2) uses multiple input representations to better capture the complexity of the routing problem, rather than relying on a single representation.</li>
+            <li>Using the predicted accuracy and cost of applying each strategy to a given task, CONCUR performs both unconstrained and constrained routing by casting them as optimization problems, whose solutions yield the final routing decisions.</li>
+          </ul>
+
+          <p><b>Performance of <i>CONCUR</i></b></b></p>
+          <ul>
+           <li>
+            We evaluated CONCUR on both in-distribution and out-of-distribution tasks that require substantial knowledge and reasoning. Across continual and non-continual settings, CONCUR consistently outperforms the best single strategy and strong existing routing methods, achieving higher end-to-end accuracy and lower inference cost, while also reducing training cost in the continual setting.
+           </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<!-- Image carousel -->
+<!-- <section class="hero is-small">
+  <div class="container">
+  </div>
+</section> -->
+<!-- End image carousel -->
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{chen2025concur,
+    title={CONCUR: A Framework for Continual Constrained and Unconstrained Routing},
+    author={Chen, Peter Baile and Li, Weiyue and Roth, Dan and Cafarella, Michael and Madden, Samuel and Andreas, Jacob},
+    journal={arXiv preprint arXiv:2512.09386},
+    year={2025}
+}</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
