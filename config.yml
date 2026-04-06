@@ -1,0 +1,11 @@
+strategy_path: ./data/strategies.json
+strategy_emb_path: ./data/strategy_embeddings.pt
+
+task_path: ./data/mmlu/task.json
+task_emb_path: ./data/mmlu/task_embeddings.pt
+
+train_data_path: ./data/mmlu/train.csv
+val_data_path: ./data/mmlu/val.csv
+test_data_path: ./data/mmlu/test.csv
+
+output_path: ./data/mmlu/output

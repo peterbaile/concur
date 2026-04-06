@@ -1,0 +1,13 @@
+{
+    "model": {
+        "qwen2b": "Qwen2.5-1.5B-Instruct is an ultra-lightweight 1.5B parameter model designed for minimal resource environments. It is best suited for simple prompts, basic classification, and short text completion, but struggles with nuanced understanding or advanced reasoning tasks.",
+        "qwen3b": "Qwen2.5-3B-Instruct is a lightweight 3B parameter model with fast inference and low resource usage. It is suitable for simple tasks such as basic question answering and short-form text generation, but is limited in handling complex reasoning or multi-step tasks.",
+        "qwen7b": "Qwen2.5-7B-Instruct is a mid-small 7B parameter model that balances speed and performance. It is capable of multi-turn dialogue, basic code and math tasks, and offers improved language understanding over smaller models, while maintaining efficient inference.",
+        "llama3b": "LLaMA-3.2-3B-Instruct is a compact 3B parameter model optimized for efficient inference in constrained environments. It handles basic instruction following, simple question answering, and short text generation reliably, but lacks the depth for nuanced reasoning or complex task execution.",
+        "llama8b": "LLaMA-3.1-8B-Instruct is a moderately sized 8B parameter model that offers a strong balance between performance and resource usage. It supports multi-turn dialogue, intermediate reasoning, and modest code or math capabilities, though it may still struggle with deeply intricate or highly technical prompts."
+    },
+    "decoding": {
+        "vanilla": "Vanilla prompting retains the original question content without adding any additional prompt information.",
+        "cot": "Chain-of-Thought (CoT) prompting guides the model to articulate a step-by-step reasoning process before providing the final answer. This results in longer responses and slower reasoning speed, typically generating the longest answers, but it performs best on complex problems such as mathematical reasoning."
+    }
+}
