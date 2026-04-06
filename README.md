@@ -23,11 +23,11 @@ data/
         test.csv
         ...
     strategies.json             # Descriptions of computational strategies (models and decoding methods)
-    config.yml                  # Path specification
-    embed_dataset.py            # Embed tasks and strategies
-    predictor.py                # Training and inference of predictors
-    routing_constrained.py      # Constrained routing
-    routing_unconstrained.py    # Unconstrained routing
+config.yml                      # Path specification
+embed_dataset.py                # Embed tasks and strategies
+predictor.py                    # Training and inference of predictors
+routing_constrained.py          # Constrained routing
+routing_unconstrained.py        # Unconstrained routing
 ```
 
 **1. Pre-processing**
