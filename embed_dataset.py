@@ -1,14 +1,15 @@
 import argparse
 import torch
+from transformers import set_seed
 
 from utils import embed, read_yaml, read_json
 
-def embed_task(question_path, save_path):
-    qs = read_json(question_path)
+def embed_task(task_path, save_path):
+    tasks = read_json(task_path)
 
-    all_texts = []
+    task_texts = []
 
-    for q in qs:
+    for task in tasks:
         choice_map = {
             0: "(A)",
             1: "(B)",
@@ -23,18 +24,18 @@ def embed_task(question_path, save_path):
             10: "(K)",
         }
 
-        choices = q['options']
+        choices = task['options']
         choices = "\n".join(
                 [f"{choice_map[i]} {choice}" for i, choice in enumerate(choices)]
             )
-        all_text = f"Question: {q['question']}\n\nChoices:\n{choices}"
-        all_texts.append(all_text)
+        task_text = f"Question: {task['question']}\n\nChoices:\n{choices}"
+        task_texts.append(task_text)
     
-    all_embeddings = embed(all_texts)
+    task_embeddings = embed(task_texts)
 
-    torch.save(all_embeddings, save_path)
+    torch.save(task_embeddings, save_path)
 
-    print(f'Embedded {len(qs)} tasks and saved to {save_path}')
+    print(f'Embedded {len(tasks)} tasks and saved to {save_path}')
 
 def embed_strategy(strategy_path, save_path):
     # embed strategies (models and decoding methods)
@@ -50,8 +51,10 @@ def embed_strategy(strategy_path, save_path):
     torch.save(strategies_embed, save_path)
 
 def main():
+    set_seed(123)
+
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config_path', type=str)
+    parser.add_argument('--config_path', type=str, default='config.yml')
     args = parser.parse_args()
 
     config = read_yaml(args.config_path)

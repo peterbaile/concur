@@ -8,4 +8,5 @@ train_data_path: ./data/mmlu/train.csv
 val_data_path: ./data/mmlu/val.csv
 test_data_path: ./data/mmlu/test.csv
 
+predictor_path: ./data/mmlu/predictors
 output_path: ./data/mmlu/output

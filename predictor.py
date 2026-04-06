@@ -8,9 +8,10 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm
 from transformers import set_seed
 import time
-import yaml
 from pathlib import Path
 import os
+
+from utils import get_all_strategies, read_yaml
 
 def prepare_data(data_path, strategy_emb_path, task_emb_path, strategy):
     # Create ID mappings for models and decoding methods (e.g., llama8b_vanilla)
@@ -439,48 +440,48 @@ def predict(
     df_preds = pd.DataFrame(results_list)
 
     df_preds.to_csv(output_path, index=False)
-    print(f"\nSaved prediction results to '{output_path}'")
+    print(f"\nSaved prediction results to {output_path}")
 
     return results
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--strategy', type=str, help='model_decoding (e.g., llama8b_cot)')
-    parser.add_argument('--predict', action='store_true')
-    parser.add_argument('--config_path', type=str)
-    args = parser.parse_args()
+def execute(strategy, run_predict, config):
+    os.makedirs(Path(config['predictor_path']), exist_ok=True)
+    save_cls_path = Path(config['predictor_path']) / f'accuracy_cls_{strategy}.pt'
+    save_reg_path = Path(config['predictor_path']) / f'cost_reg_{strategy}.pt'
 
-    set_seed(1234)
+    if not run_predict and save_cls_path.exists() and save_reg_path.exists():
+        print(f'{save_cls_path} and {save_reg_path} already exist')
+        return
 
-    with open(args.config_path) as f:
-        config = yaml.safe_load(f)
-    os.makedirs(Path(args.output_path), exist_ok=True)
-    save_cls_path = Path(args.output_path) / f'accuracy_cls_{args.strategy}.pt'
-    save_reg_path = Path(args.output_path) / f'cost_reg_{args.strategy}.pt'
-    save_pred_path = Path(args.output_path) / f'pred_{args.strategy}.csv'
+    os.makedirs(Path(config['output_path']), exist_ok=True)
+    save_pred_path = Path(config['output_path']) / f'pred_{strategy}.csv'
 
-    if args.predict:
+    if run_predict and save_pred_path.exists():
+        print(f'{save_pred_path} already exists')
+        return
+
+    if run_predict:
         print("Predicting...")
         predict(
             config['test_data_path'], config['task_emb_path'], config['strategy_emb_path'],
-            save_cls_path, save_reg_path, save_pred_path, args.strategy
+            save_cls_path, save_reg_path, save_pred_path, strategy
         )
     else:
         start_time = time.time()
-        print(f"Loading training and validation data for {args.strategy}...")
+        print(f"Loading training and validation data for {strategy}...")
         (
             X_train, y_cls_train, y_reg_train,
             model_ids_train, decoding_ids_train,
             _, _,
             num_models_train, num_decodings_train,
         ) = prepare_data(
-            config['train_data_path'], config['strategy_emb_path'], config['task_emb_path'], args.strategy
+            config['train_data_path'], config['strategy_emb_path'], config['task_emb_path'], strategy
         )
         (
             X_val, y_cls_val, y_reg_val,
             model_ids_val, decoding_ids_val,
             _, _, _, _,
-        ) = prepare_data(config['val_data_path'], config['strategy_emb_path'], config['task_emb_path'], args.strategy)
+        ) = prepare_data(config['val_data_path'], config['strategy_emb_path'], config['task_emb_path'], strategy)
 
         print(
             f"Training data: X: {X_train.shape}, y_cls: {y_cls_train.shape}, y_reg: {y_reg_train.shape}, "
@@ -491,7 +492,7 @@ def main():
             f"model_ids: {model_ids_val.shape}, decoding_ids: {decoding_ids_val.shape}"
         )
 
-        print(f'Training accuracy and cost predictors for {args.strategy}')
+        print(f'Training accuracy and cost predictors for {strategy}')
         train_dual_models(
             X_train, y_cls_train, y_reg_train,
             model_ids_train, decoding_ids_train,
@@ -503,7 +504,26 @@ def main():
 
         end_time = time.time()
         train_time = end_time - start_time
-        print(f'Training for {args.strategy} completed in {train_time:.3f} seconds')
+        print(f'Training for {strategy} completed in {train_time:.3f} seconds')
+
+def main():
+    set_seed(1234)
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--config_path', type=str, default='config.yml')
+    parser.add_argument('--strategy', nargs='+', help='model_decoding (e.g., llama8b_cot)', required=True)
+    parser.add_argument('--predict', action='store_true')
+    args = parser.parse_args()
+
+    if args.strategy == ['all']:
+        strategies = [strategy[-1] for strategy in get_all_strategies()]
+    else:
+        strategies = args.strategy
+
+    config = read_yaml(args.config_path)
+
+    for strategy in strategies:
+        execute(strategy, args.predict, config)
 
 if __name__ == "__main__":
     main()
